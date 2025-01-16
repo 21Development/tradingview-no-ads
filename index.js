@@ -2,12 +2,19 @@
   'use strict';
   const checkAd = setInterval(() => {
     const adBox = document.querySelector("[data-role^='toast-container']")
-
-    if (adBox) {
+    const backdrop = document.querySelector("[class^='backdrop']");
+    
+    if (adBox !== null) {
       adBox.remove();
-      console.log('ad removed.');
-    } else {
-      console.log('no ad present.');
-    }
-  }, 5000);
+      console.info('TradingView NoAds: Ad removed.');
+    } 
+    
+    if ( backdrop !== null ) {
+      let adModal = backdrop.nextElementSibling;
+      backdrop.remove();
+      if ( adModal !== null ) {
+        adModal.remove();
+        console.info('TradingView NoAds: Modal removed.');
+      }
+    }, 5000);
 })();
